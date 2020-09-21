@@ -1,5 +1,5 @@
 const select = document.getElementById('breeds');
-const card = document.querySelector('.card'); 
+const card = document.querySelector('.card');
 const form = document.querySelector('form');
 
 // ------------------------------------------
@@ -15,7 +15,7 @@ function fetchData(url) {
 
 Promise.all([
   fetchData('https://dog.ceo/api/breeds/list'),
-  fetchData('https://dog.ceo/api/breeds/image/random')  
+  fetchData('https://dog.ceo/api/breeds/image/random')
 ])
 .then(data => {
   const breedList = data[0].message;
@@ -77,7 +77,7 @@ form.addEventListener('submit', postData);
 // ------------------------------------------
 
 function postData(e) {
-  e.preventDefault();
+  e.preventDefault(); // cancels the defualt browser submit behavour
   const name = document.getElementById('name').value;
   const comment = document.getElementById('comment').value;
   
@@ -89,7 +89,7 @@ function postData(e) {
     body: JSON.stringify({ name, comment }) 
   }
   
-  fetch('https://jsonplaceholder.typicode.com/comments', config)
+  fetch('https://jsonplaceholder.typicode.com/comments', config) // this is a fake online REST API for testing and Prototyping , config obect that lets you control a number of settings you can apply to the request method like choosing a different http method by default this is getting data from the server and not posting
     .then(checkStatus)
     .then(res => res.json())
     .then(data => console.log(data))
